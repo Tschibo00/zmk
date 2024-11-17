@@ -45,8 +45,8 @@
                 , <&macro_tap &sk CMD>
                 , <&madro_release &lt NAVFN>
                 ;
-        }
-    }
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
