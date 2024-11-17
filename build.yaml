@@ -19,6 +19,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: hackerbrettle_left
+    shield: cradio_left
   - board: nice_nano_v2
-    shield: hackerbrettle_right
+    shield: cradio_right
