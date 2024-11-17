@@ -72,7 +72,7 @@
             &kp Q      &kp W      &kp F      &kp P      &kp B          &kp J      &kp L      &kp U      &kp Y      &kp P
             &kp A      &kp R      &kp S      &kp T      &kp G          &kp M      &kp N      &kp E      &kp I      &kp O
             HRML(Z,    X,         C,         D)         &kp V          &kp K      HRMR(H,    COMMA,     DOT,       FSLH)
-                                      &mt LSHFT SPACE   &lt NUMSYM CAPS     &lt NUMSYM CAPS  &lt NAVFN PRIR
+                                      &mt LSHFT SPACE   &lt NUMSYM CAPS     &lt NUMSYM CAPS  nav_cmd
             >;
         };
 
