@@ -1,0 +1,13 @@
+file_format: "1"
+id: hackerbrettle
+name: HackerBrettLe
+type: shield
+url: https://github.com/tschibo00
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - studio
+siblings:
+  - hackerbrettle_left
+  - hackerbrettle_right
