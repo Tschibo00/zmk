@@ -3,7 +3,7 @@ Wireless split version of my usual keyboard layout, (more or less) migrated to Z
 
 34-key, gasket mount, mag-lock capable, using nice!nano
 
-![beauty shot](img.jpg)
+![beauty shot](IMG_20250117_152716.jpg)
 
 # Todos
 - [x] fix shifted symbol layer keys
