@@ -103,14 +103,14 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
  * combos
  *             ┌─────┐                             ┌─────┐
  *       ┌─────┤     │                             │     ├─────┐
- * ┌─────┤     │ +   ├─────┬─────┐     ┌─────┬─────┤  +=Del=+  ├─────┐
+ * ┌─────┤ +=Del=+   ├─────┬─────┐     ┌─────┬─────┤  +=Del=+  ├─────┐
  * │     │     ├──\+SftTab+│   +===Caps===+  │     ├─────┤     │     │
  * │     ├─────┤     │     │     │     │     │     │     ├─────┤     │
- * ├─────┤     │ +   ├─────┼─────┤     ├─────┼─────┤  +=BkSp=+ ├─────┤
+ * ├─────┤+=BkSp=+   ├─────┼─────┤     ├─────┼─────┤  +=BkSp=+ ├─────┤
  * │     │     ├──\=+=Tab=+│     │     │     │     ├─────┤     │     │
  * │     ├─────┤     │     │     │     │     │     │     ├─────┤     │
- * ├─────┤     │     ├─────┼─────┤     ├─────┼─────┤+=DelWord=+├─────┤
- * │     │     ├─────┤     │     │     │     │     ├─────┤+=DelLine=+│
+ * ├─────┤  +=CtrlC+ ├─────┼─────┤     ├─────┼─────┤+=DelWord=+├─────┤
+ * │ +=CtrlX+  ├────+CtrlV+│     │     │     │     ├─────┤+=DelLine=+│
  * │     ├─────┘     │     │     │     │     │     │     └─────┤     │
  * └─────┘           └─────┴─────┘     └─────┴─────┘           └─────┘
  *                   ┌─────┬─────┐     ┌─────┬─────┐
@@ -143,15 +143,15 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
             &kp Q      &kp W      &kp F      &kp P       &kp B          &kp J      &kp L       &kp U               &kp Y             &kp MINUS
             &kp A      &kp R      &kp S      &kp T       &kp G          &kp M      &kp N       &kp E               &kp I             &kp O
             &ht LGUI Z &ht LALT X &ht LCTL C &ht LSHFT D &kp V          &kp K      &ht RSHFT H &comma_morph RCTL 0 &dot_morph RALT 0 &apos_morph RGUI 0
-                              &mt LSHFT SPACE   &hm NUMSYM MC_JUMP &hm NUMSYM MC_ONESHOT  &hm NAVFN CMD                                     
+                              &mt LSHFT SPACE   &hm NUMSYM MC_ONESHOT &hm NUMSYM MC_JUMP  &hm NAVFN CMD                                     
             >;
         };
 
         numsym_layer {
  //             ┌─────┐                             ┌─────┐
- //       ┌─────┤8    │                             │3    ├─────┐
- // ┌─────┤7    │     ├─────┬─────┐     ┌─────┬─────┤     │4    ├─────┐
- // │6    │     ├─────┤9    │0    │     │1    │2    ├─────┤     │5    │
+ //       ┌─────┤3    │                             │8    ├─────┐
+ // ┌─────┤2    │     ├─────┬─────┐     ┌─────┬─────┤     │9    ├─────┐
+ // │1    │     ├─────┤4    │5    │     │6    │7    ├─────┤     │0    │
  // │     ├─────┤= \  │     │     │     │     │     │[    ├─────┤     │
  // ├─────┤@    │     ├─────┼─────┤     ├─────┼─────┤     │{    ├─────┤
  // │~    │     ├─────┤* |  │+ /  │     │:    │(    ├─────┤     │<    │
@@ -165,7 +165,7 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
  //                   │shift│numsy│     │numsy│navfn│
  //                   └─────┴─────┘     └─────┴─────┘
             bindings = <
-            &kp N6     &kp N7     &kp N8     &kp N9     &kp N0         &kp N1     &kp N2     &kp N3     &kp N4     &kp N5
+            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0         
             &mc_tilde  &kp AT     &eql_bksl  &star_pipe &plus_slsh     &kp COLON  &kp LPAR   &kp LBKT   &kp LBRC   &kp LS(COMMA)
             &kp DOLLAR &kp PRCNT  &mc_caret  &kp HASH   &kp AMPS       &kp SEMI   &kp RPAR   &kp RBKT   &kp RBRC   &kp LS(DOT)
                               &mt LSHFT SPACE   &hm NUMSYM MC_JUMP &hm NUMSYM MC_ONESHOT &hm NAVFN CMD                                     
@@ -190,8 +190,8 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
  //                   │shift│numsy│     │numsy│navfn│
  //                   └─────┴─────┘     └─────┴─────┘
             bindings = <
-            &kp F1     &kp F2     &kp F3     &kp F4     &kp F5         &kp LC(HOME) &kp PG_UP &kp UP    &kp PG_DN  &kp LC(END)
-            &kp F6     &kp F7     &kp F8     &kp F9     &kp F10        &kp HOME   &kp LEFT   &kp DOWN   &kp RIGHT  &kp END
+            &kp F1     &kp F2     &kp F3     &kp F4     &kp F5         &kp LC(HOME)     &kp PG_UP    &kp UP       &kp PG_DN     &kp LC(END)
+            &kp F6     &kp F7     &kp F8     &kp F9     &kp F10        &kp HOME         &kp LEFT     &kp DOWN     &kp RIGHT     &kp END
             &kp F11    &kp F12    &kp LC(C)  &kp LC(X)  &kp LC(V)      &kp LS(LC(LEFT)) &kp LC(LEFT) &kp LS(DOWN) &kp LC(RIGHT) &kp LS(LC(RIGHT))
                               &mt LSHFT SPACE   &hm NUMSYM MC_JUMP &hm NUMSYM MC_ONESHOT &hm NAVFN CMD                                     
             >;
@@ -203,34 +203,34 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
  // ┌─────┤track│pause├─────┬─────┐     ┌─────┬─────┤up   │msWhl├─────┐
  // │Boot │prev ├─────┤track│vol  │     │msWhl│msWhl├─────┤right│Boot │
  // │     ├─────┤stop │next │up   │     │up   │left │mouse├─────┤     │
- // ├─────┤     │     ├─────┼─────┤     ├─────┼─────┤down │mouse├─────┤
- // │     │     ├─────┤     │vol  │     │msWhl│mouse├─────┤right│mouse│
- // │     ├─────┤     │     │down │     │down │left │mouse├─────┤acc1 │
+ // ├─────┤BT   │     ├─────┼─────┤     ├─────┼─────┤down │mouse├─────┤
+ // │BT   │clear├─────┤BT   │vol  │     │msWhl│mouse├─────┤right│mouse│
+ // │dscn0├─────┤     │sel 0│down │     │down │left │mouse├─────┤acc1 │
  // ├─────┤     │     ├─────┼─────┤     ├─────┼─────┤btn3 │mouse├─────┤
- // │     │     ├─────┤     │vol  │     │     │mouse├─────┤btn2 │mouse│
- // │     ├─────┘     │     │mute │     │     │btn1 │     └─────┤acc0 │
+ // │BT   │     ├─────┤BT   │vol  │     │     │mouse├─────┤btn2 │mouse│
+ // │dscn1├─────┘     │sel 1│mute │     │     │btn1 │     └─────┤acc0 │
  // └─────┘           └─────┴─────┘     └─────┴─────┘           └─────┘
  //                   ┌─────┬─────┐     ┌─────┬─────┐
- //                   │space│2lead│     │1lead│cmd  │
+ //                   │space│1lead│     │2lead│cmd  │
  //                   │shift│numsy│     │numsy│navfn│
  //                   └─────┴─────┘     └─────┴─────┘
             bindings = <
-            &bootloader &kp C_PREV &kp C_PP   &kp C_NEXT &kp C_VOL_UP     ___    ___    ___    ___    &bootloader
-            ___         ___        &kp C_STOP ___        &kp C_VOL_DN     ___    ___    ___    ___    ___
-            ___         ___        ___        ___        &kp C_MUTE       ___    ___    ___    ___    ___
-                                                       ___     ___         ___     ___
+            &bootloader   &kp C_PREV &kp C_PP   &kp C_NEXT   &kp C_VOL_UP     ___    ___    ___    ___    &bootloader
+            &bt BT_DISC 0 &bt BT_CLR &kp C_STOP &bt BT_SEL 0 &kp C_VOL_DN     ___    ___    ___    ___    ___
+            &bt BT_DISC 1 ___        ___        &bt BT_SEL 1 &kp C_MUTE       ___    ___    ___    ___    ___
+                                                          ___     ___         ___     ___
             >;
         };
 
         cmd_layer {
  //             ┌─────┐                             ┌─────┐
- //       ┌─────┤     │                             │ü    ├─────┐
- // ┌─────┤Esc  │     ├─────┬─────┐     ┌─────┬─────┤     │Del  ├─────┐
+ //       ┌─────┤Ctrl │                             │ü    ├─────┐
+ // ┌─────┤Esc  │Sft F├─────┬─────┐     ┌─────┬─────┤     │Del  ├─────┐
  // │     │     ├─────┤Sft+ │     │     │     │Sft+ ├─────┤     │     │
  // │     ├─────┤ß    │Tab  │     │     │     │Retrn│€    ├─────┤     │
  // ├─────┤     │     ├─────┼─────┤     ├─────┼─────┤     │BkSp ├─────┤
- // │ä    │     ├─────┤Tab  │     │     │     │Retrn├─────┤     │ö    │
- // │     ├─────┤     │     │     │     │     │     │     ├─────┤     │
+ // │ä    │     ├─────┤Tab  │Mute/│     │     │Retrn├─────┤     │ö    │
+ // │     ├─────┤     │     │Unmte│     │     │     │     ├─────┤     │
  // ├─────┤     │     ├─────┼─────┤     ├─────┼─────┤     │Del  ├─────┤
  // │     │     ├─────┤     │     │     │     │     ├─────┤Wrd  │Del  │
  // │     ├─────┘     │     │     │     │     │     │     └─────┤Line │
@@ -240,10 +240,10 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
  //                   │     │     │     │     │     │
  //                   └─────┴─────┘     └─────┴─────┘
             bindings = <
-            ___       &kp ESC ___       &kp LS(TAB) ___         ___     &kp LS(RET) &kp RA(Y)      &kp DEL    ___
-            &kp RA(Q) ___     &kp RA(S) &kp TAB     ___         ___     &kp RET     &kp LA(LC(N5)) &kp BSPC   &kp RA(P)
-            ___       ___     ___       ___         ___         ___     ___         ___            &delword   &delline
-                                           ___      ___         ___     ___
+            ___       &kp ESC &kp LS(LC(F)) &kp LS(TAB) ___         ___     &kp LS(RET) &kp RA(Y)      &kp DEL    ___
+            &kp RA(Q) ___     &kp RA(S)     &kp TAB &kp LG(LA(K))   ___     &kp RET     &kp LA(LC(N5)) &kp BSPC   &kp RA(P)
+            ___       ___     ___           ___         ___         ___     ___         ___            &delword   &delline
+                                               ___      ___         ___     ___
             >;
         };
         
@@ -251,12 +251,12 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
 // one-shot leader key
 /*             ┌─────┐                             ┌─────┐
  *       ┌─────┤Doubl│                             │Dupli├─────┐
- * ┌─────┤     │Shift├─────┬─────┐     ┌─────┬─────┤Line │     ├─────┐
+ * ┌─────┤Esc  │Shift├─────┬─────┐     ┌─────┬─────┤Line │     ├─────┐
  * │Lock │     ├─────┤Comnt│Multi│     │MltCm│Multi├─────┤     │     │
  * │     ├─────┤PrtSc│     │Comnt│     │InteJ│Code │[]   ├─────┤     │
  * ├─────┤WinR │     ├─────┼─────┤     ├─────┼─────┤     │{}   ├─────┤
- * │->   │     ├─────┤Mute/│     │     │- [ ]│()   ├─────┤     │´´   │
- * │     ├─────┤CtrlC│Unmte│     │     │     │     │     ├─────┤     │
+ * │->   │     ├─────┤Retrn│CtAlt│     │- [ ]│()   ├─────┤     │´´   │
+ * │     ├─────┤CtrlC│     │Tab  │     │     │     │     ├─────┤     │
  * ├─────┤CtrlY│     ├─────┼─────┤     ├─────┼─────┤     │     ├─────┤
  * │CtrlZ│     ├─────┤CtrlX│CtrlV│     │Alt  │Shift├─────┤     │""   │
  * │     ├─────┘     │     │     │     │CtrlV│CtrlV│     └─────┤     │
@@ -267,14 +267,14 @@ MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
  *                   └─────┴─────┘     └─────┴─────┘*/
         mc_oneshot {
             bindings = <
-            &u_q  ___   &u_f  &u_p  &u_b     &u_j  &u_l  &u_u  ___   ___   
-            &u_a  &u_r  &u_s  &u_t  ___      &u_m  &u_n  &u_e  &u_i  &u_o   
-            &u_z  &u_x  &u_c  &u_d  &u_v     &u_k  &u_h  ___   ___   &u_apo
-                         &u_lft &u_inlft     &u_inrgt &u_rgt  
+            &u_q  &kp ESC &u_f  &u_p  &u_b               &u_j  &u_l  &u_u  ___   ___   
+            &u_a  &u_r    &u_s  &kp RET &kp LA(LC(TAB))  &u_m  &u_n  &u_e  &u_i  &u_o   
+            &u_z  &u_x    &u_c  &u_d  &u_v               &u_k  &u_h  ___   ___   &u_apo
+                           &u_lft &u_inlft               &u_inrgt &u_rgt  
             >;
         };
 
-#include "inc/twoleader_keymap.h"
+        #include "inc/twoleader_keymap.h"
        
     };
 };
