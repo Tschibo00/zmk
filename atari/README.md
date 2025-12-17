@@ -15,7 +15,7 @@ I won't develop this much, just releasing it as-is for anybody knowledgable pick
 It is NOT ready to take the files and produce a working keyboard!
 
 # Todos
-- [ ] add PCB graphics
+- [ ] add PCB artwork
 - [ ] order the thing
 - [ ] hack firmware
 - [ ] design Atari 130XE style case including function keys
