@@ -2,6 +2,11 @@
 Wireless universal 40% keyboard in a 12x4U format, including mounting holes for BM40 cases and gaskets.
 Will be using ZMK on a nice!nano
 
+The PCB supports multiple configurations, including Katana with 0.5U indent and QAZ, also multiple bottow row configs are possible.
+(almost) all switches are mounted sideways to have better stability with the overlapping footprints. Also it's no clearance problem with tested switches/caps and it supports the modified Selectric keycaps (see https://github.com/Tschibo00/qmk/tree/main/hacktrick for details on the idea)
+
+![layout_options](misc/layout_options.png)
+
 ## WARNING
 This project is a personal project, i just built one prototype. It's not considered complete, nor tested or error-free.
 
