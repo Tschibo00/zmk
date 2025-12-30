@@ -1,4 +1,4 @@
-# Atari XE mini
+# AtaKi
 Wireless universal 40% keyboard in a 12x4U format, including mounting holes for BM40 cases and gaskets.
 Will be using ZMK on a nice!nano
 
