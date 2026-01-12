@@ -15,8 +15,9 @@ I won't develop this much, just releasing it as-is for anybody knowledgable pick
 It is NOT ready to take the files and produce a working keyboard!
 
 # Todos
-- [ ] add PCB artwork
-- [ ] order the thing
+- [x] add PCB artwork
+- [x] order the thing
 - [ ] hack firmware
 - [ ] design Atari 130XE style case including function keys
 - [ ] boast about it on r/mk
+- [ ] fix PCB (esp. encoder mount pads)
