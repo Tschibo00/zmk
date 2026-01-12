@@ -21,3 +21,4 @@ It is NOT ready to take the files and produce a working keyboard!
 - [ ] design Atari 130XE style case including function keys
 - [ ] boast about it on r/mk
 - [ ] fix PCB (esp. encoder mount pads)
+- [ ] add note to U1 to put nano on bottom side
