@@ -20,8 +20,8 @@ It is NOT ready to take the files and produce a working keyboard!
 - [ ] hack firmware
 - [ ] design Atari 130XE style case including function keys
 - [ ] boast about it on r/mk
-- [ ] fix PCB (esp. encoder mount pads)
+- [x] fix PCB (esp. encoder mount pads)
 - [ ] add note to U1 to put nano on bottom side
-- [ ] add traces to daughter board
-- [ ] add missing Atari footprints
-- [ ] move name+link to central bottom row, enlarge a bit
+- [x] add traces to daughter board
+- [x] add missing Atari footprints
+- [x] move name+link to central bottom row, enlarge a bit
