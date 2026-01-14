@@ -24,3 +24,4 @@ It is NOT ready to take the files and produce a working keyboard!
 - [ ] add note to U1 to put nano on bottom side
 - [ ] add traces to daughter board
 - [ ] add missing Atari footprints
+- [ ] move name+link to central bottom row, enlarge a bit
