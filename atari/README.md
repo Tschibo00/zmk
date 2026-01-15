@@ -25,3 +25,4 @@ It is NOT ready to take the files and produce a working keyboard!
 - [x] add traces to daughter board
 - [x] add missing Atari footprints
 - [x] move name+link to central bottom row, enlarge a bit
+- [ ] move reset switch because it's blocking the usb
