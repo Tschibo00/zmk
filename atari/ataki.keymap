@@ -1,0 +1,250 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include "inc/helpers.h"
+
+// Layers
+#define BASE 0
+#define NUMSYM 1
+#define NAVFN 2
+#define SYSTEM 3
+#define CMD 4
+#define BASE_LAYERS BASE
+
+#define ___ &trans
+
+/* How quickly Combo keys must be pressed together */
+#define COMBO_TIMEOUT_MS 30
+/* Macro timers; can be increased for systems that don't like 0ms Macros */
+#define FAST_MACRO_TAP_MS 0
+#define FAST_MACRO_WAIT_MS 0
+
+#define LEADER_HT(hold_layer) &leader_ht hold_layer 0
+
+/* Custom base layer punctuation */
+SHIFT_MORPH(comma_qust, &kp COMMA, &kp QMARK)
+SHIFT_MORPH(dot_exc, &kp DOT, &kp EXCL)
+SHIFT_MORPH(eql_bksl, &kp EQUAL, &kp BSLH)
+SHIFT_MORPH(star_pipe, &kp STAR, &kp PIPE)
+SHIFT_MORPH(plus_slsh, &kp PLUS, &kp FSLH)
+
+MY_HOLD_TAP(dot_morph, &dot_exc, &kp)
+MY_HOLD_TAP(comma_morph, &comma_qust, &kp)
+MY_HOLD_TAP(apos_morph, &mc_apos, &kp)
+
+#include "inc/urob_leader.h"
+
+/ {
+    behaviors {
+       ht: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <300>;
+            require-prior-idle-ms = <100>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        /* Let Caps Word continue when typing Underscore */
+        caps_word {
+            continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+        };
+
+        hm: hold_mod {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <300>;
+            bindings = <&mo>, <&sl>;
+        };
+        
+        leader_ht: leader_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <300>;
+            bindings = <&mo>, <&leader>;       // Template, wird vom Makro ersetzt
+        };
+    };
+    
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <NUMSYM NAVFN>;
+            then-layer = <SYSTEM>;
+        };
+    };
+
+#include "inc/leader_macros.h" 
+#include "inc/combos.h" 
+    
+ // cheat-sheet for indexes
+ // ┌───┬──┬──┬──┬──┬──┬──┬──┬──┬──┬───┐
+ // │0  │1 │2 │3 │4 │5 │6 │7 │8 │9 │10 │
+ // ├───┴┬─┴┬─┴┬─┴┬─┴┬─┴┬─┴┬─┴┬─┴┬─┴───┤
+ // │11  │12│13│14│15│16│17│18│19│20   │
+ // ├────┴─┬┴─┬┴─┬┴─┬┴─┬┴─┬┴─┬┴─┬┴─┬───┤
+ // │21    │22│23│24│25│26│27│28│29│30 │
+ // ├──┬──┬┴─┬┴─┬┴──┼──┼──┴┬─┴┬─┴┬─┴┬──┤
+ // │31│32│33│34│35 │36│37 │38│39│40│41│
+ // └──┴──┴──┴──┴───┴──┴───┴──┴──┴──┴──┘
+/*
+ * combos (see inc/combos.h for implementation)
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │        │ +=Del=+=SftTab+ │+===Caps==+│     │ +=Del=+   │     │       │
+ * │        │     │     │     │     │     │     │     │     │     │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │         │ +=BkSp=+=Tab=+  │     │     │     │  +=BkSp=+ │            │
+ * │         │     │     │     │     │     │     │     │     │            │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │      +=CtrlX+=CtrlC+CtrlV=+ │     │     │     │+=DelWord=+│          │
+ * │           │     │     │     │     │     │     │     │  +=DelLine=+   │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │      │     │     │     │      │+=system==+ │     │     │     │       │
+ * │      │     │     │     │      │     │      │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+/*
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │q       │w    │e    │r    │t    │y    │u    │i    │o    │p    │BkSp   │
+ * │        │     │     │     │     │     │     │     │     │     │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │a        │s    │d    │f    │g    │h    │j    │k    │l    │- _         │
+ * │         │     │     │     │     │     │     │     │     │            │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │z          │x    │c    │v    │b    │n    │m    │, ?  │. !  │' "       │
+ * │lgui       │lalt │lctl │lshft│     │     │rshft│rctl │ralt │rgui      │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │cut   │copy │paste│     │space │lead │cmd   │     │     │     │       │
+ * │      │     │     │     │shift │numsy│navfn │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+            &kp Q      &kp W      &kp E      &kp R       &kp T           &kp Y             &kp U         &kp I               &kp O             &kp P              &kp BSPC
+            &kp A      &kp S      &kp D      &kp F       &kp G           &kp H             &kp J         &kp K               &kp L             &kp MINUS
+            &ht LGUI Z &ht LALT X &ht LCTL C &ht LSHFT V &kp B           &kp N             &ht RSHFT M   &comma_morph RCTL 0 &dot_morph RALT 0 &apos_morph RGUI 0
+            &kp LC(X)  &kp LC(C)  &kp LC(V)  ___         &mt LSHFT SPACE LEADER_HT(NUMSYM) &hm NAVFN CMD ___                 ___               ___                ___
+            ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___                                 
+            >;
+        };
+
+        numsym_layer {
+/*
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │1       │2    │3    │4    │5    │6    │7    │8    │9    │0    │BkSp   │
+ * │        │     │     │     │     │     │     │     │     │     │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │~        │@    │= \  │* |  │+ /  │:    │(    │[    │{    │<           │
+ * │         │     │     │     │     │     │     │     │     │            │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │$          │%    │^    │#    │&    │;    │)    │] ,  │} .  │>         │
+ * │           │     │     │     │     │     │     │     │     │          │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │cut   │copy │paste│     │space │lead │cmd   │     │     │     │       │
+ * │      │     │     │     │shift │numsy│navfn │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+            bindings = <
+            &kp N1     &kp N2    &kp N3    &kp N4     &kp N5          &kp N6            &kp N7        &kp N8   &kp N9   &kp N0        &kp BSPC
+            &mc_tilde  &kp AT    &eql_bksl &star_pipe &plus_slsh      &kp COLON         &kp LPAR      &kp LBKT &kp LBRC &kp LS(COMMA)      
+            &kp DOLLAR &kp PRCNT &mc_caret &kp HASH   &kp AMPS        &kp SEMI          &kp RPAR      &kp RBKT &kp RBRC &kp LS(DOT)      
+            &kp LC(X)  &kp LC(C) &kp LC(V) ___        &mt LSHFT SPACE LEADER_HT(NUMSYM) &hm NAVFN CMD ___      ___      ___           ___
+            ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___                                 
+            >;
+        };
+
+        navfn_layer {
+/*
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │F1      │F2   │F3   │F4   │F5   │Top  │PgUp │↑    │PgDwn│Bottm│BkSp   │
+ * │        │     │     │     │     │     │     │     │     │     │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │F6       │F7   │F8   │F9   │F10  │Home │←    │↓    │→    │End         │
+ * │         │     │     │     │     │     │     │     │     │            │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │F11        │F12  │CtrlC│CtrlX│CtrlV│SelWL│WrdLf│SelLn│WrdRg│SelWR     │
+ * │           │     │     │     │     │     │     │     │     │          │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │cut   │copy │paste│     │space │lead │cmd   │     │     │     │       │
+ * │      │     │     │     │shift │numsy│navfn │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+            bindings = <
+            &kp F1    &kp F2    &kp F3    &kp F4    &kp F5          &kp LC(HOME)      &kp PG_UP     &kp UP       &kp PG_DN     &kp LC(END)       &kp BSPC
+            &kp F6    &kp F7    &kp F8    &kp F9    &kp F10         &kp HOME          &kp LEFT      &kp DOWN     &kp RIGHT     &kp END        
+            &kp F11   &kp F12   &kp LC(C) &kp LC(X) &kp LC(V)       &kp LS(LC(LEFT))  &kp LC(LEFT)  &kp LS(DOWN) &kp LC(RIGHT) &kp LS(LC(RIGHT))   
+            &kp LC(X) &kp LC(C) &kp LC(V) ___       &mt LSHFT SPACE LEADER_HT(NUMSYM) &hm NAVFN CMD ___          ___           ___               ___
+            ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___                                 
+           >;
+        };
+
+        system_layer {
+/*
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │Boot    │track│play │track│vol  │msWhl│msWhl│mouse│msWhl│mouse│       │
+ * │        │prev │pause│next │up   │up   │left │up   │right│acc2 │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │RGB      │RGB  │stop │RGB  │vol  │msWhl│mouse│mouse│mouse│mouse       │
+ * │Sat+     │Lum+ │     │Hue+ │down │down │left │down │right│acc1        │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │RGB        │RGB  │RGB  │RGB  │vol  │RGB  │mouse│mouse│mouse│mouse     │
+ * │Sat-       │Lum- │Mode │Hue- │mute │OnOff│btn1 │btn3 │btn2 │acc0      │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │      │     │     │     │      │     │      │     │     │     │       │
+ * │      │     │     │     │      │     │      │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+            bindings = <
+            &bootloader   &kp C_PREV &kp C_PP   &kp C_NEXT   &kp C_VOL_UP ___ ___ ___ ___ &bootloader ___   
+            &bt BT_DISC 0 &bt BT_CLR &kp C_STOP &bt BT_SEL 0 &kp C_VOL_DN ___ ___ ___ ___ ___       
+            &bt BT_DISC 1 ___        ___        &bt BT_SEL 1 &kp C_MUTE   ___ ___ ___ ___ ___       
+            ___           ___        ___        ___          ___          ___ ___ ___ ___ ___         ___
+            ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___                                 
+           >;
+        };
+
+        cmd_layer {
+/*
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │        │Esc  │€    │     │     │     │Sft+ │ü    │ö    │     │       │
+ * │        │     │     │     │     │     │Retrn│     │     │     │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │ä        │ß    │     │Ctrl │     │     │Retrn│     │     │            │
+ * │         │     │     │Sft F│     │     │     │     │     │            │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │           │     │     │     │     │     │     │     │     │          │
+ * │           │     │     │     │     │     │     │     │     │          │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │      │     │     │     │      │     │      │     │     │     │       │
+ * │      │     │     │     │      │     │      │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+            bindings = <
+            ___       &kp ESC   &kp LA(LC(N5)) ___           ___ ___ &kp LS(RET) &kp RA(Y) &kp RA(P) ___ ___  
+            &kp RA(Q) &kp RA(S) ___            &kp LS(LC(F)) ___ ___ &kp RET     ___       ___       ___
+            ___       ___       ___            ___           ___ ___ ___         ___       ___       ___
+            ___       ___       ___            ___           ___ ___ ___         ___       ___       ___ ___
+            ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___                                 
+           >;
+        };
+    };
+/*
+ * leader one-key (see inc/leader_macros.h for implementation)
+ * ┌────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬───────┐
+ * │Lock    │     │Doubl│Comnt│Multi│MltCm│Multi│Dupli│     │     │enter  │
+ * │        │     │Shift│     │Comnt│InteJ│Code │Line │     │     │       │
+ * ├────────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴───────┤
+ * │->       │WinR │PrtSc│Mute/│     │- [ ]│()   │[]   │{}   │´´          │
+ * │         │     │     │Unmte│     │     │     │     │     │            │
+ * ├─────────┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬──────────┤
+ * │CtrlZ      │CtrlY│CtrlC│CtrlX│CtrlV│Alt  │Shift│     │     │""        │
+ * │           │     │     │     │     │CtrlV│CtrlV│     │     │          │
+ * ├──────┬────┴┬────┴┬────┴┬────┴─┬───┴─┬───┴──┬──┴──┬──┴──┬──┴──┬───────┤
+ * │      │     │     │     │WinLf │/lead│WinRg │     │     │     │       │
+ * │      │     │     │     │      │     │      │     │     │     │       │
+ * └──────┴─────┴─────┴─────┴──────┴─────┴──────┴─────┴─────┴─────┴───────┘
+ */
+};
