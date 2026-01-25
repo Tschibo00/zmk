@@ -27,5 +27,5 @@ It is NOT ready to take the files and produce a working keyboard!
 - [x] move name+link to central bottom row, enlarge a bit
 - [ ] move reset switch because it's blocking the usb
 - [ ] add joystick ports
-- [ ] create base keymap
-- [ ] create additional keymaps, e.g. Katana
+- [x] create base keymap
+- [x] create additional keymaps, e.g. Katana
