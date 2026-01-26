@@ -17,7 +17,7 @@ It is NOT ready to take the files and produce a working keyboard!
 # Todos
 - [x] add PCB artwork
 - [x] order the thing
-- [ ] hack firmware
+- [x] hack firmware
 - [ ] design Atari 130XE style case including function keys
 - [ ] boast about it on r/mk
 - [x] fix PCB (esp. encoder mount pads)
@@ -29,3 +29,4 @@ It is NOT ready to take the files and produce a working keyboard!
 - [ ] add joystick ports
 - [x] create base keymap
 - [x] create additional keymaps, e.g. Katana
+- [ ] add LED connector
