@@ -25,8 +25,8 @@ It is NOT ready to take the files and produce a working keyboard!
 - [x] add traces to daughter board
 - [x] add missing Atari footprints
 - [x] move name+link to central bottom row, enlarge a bit
-- [ ] move reset switch because it's blocking the usb
-- [ ] add joystick ports
+- [x] move reset switch because it's blocking the usb
+- [x] add joystick ports
 - [x] create base keymap
 - [x] create additional keymaps, e.g. Katana
-- [ ] add LED connector
+- [x] add LED connector
