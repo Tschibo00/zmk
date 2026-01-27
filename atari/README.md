@@ -14,6 +14,17 @@ I won't develop this much, just releasing it as-is for anybody knowledgable pick
 
 It is NOT ready to take the files and produce a working keyboard!
 
+## How to build
+To not struggle when soldering, it should be done in the following order:
+- solder all diodes (and resistor if equipped) first
+- solder the two switches on opposite of MCU
+  - if you want to put the MCU as low as possible, cut the pins of the switches first to sit quite flush with the PCB
+- solder the MCU
+  - put the short ends of the headers through the PCB, long end goes through the MCU
+  - if you want to put the MCU flush down, solder headers to PCB first, then remove the spacers on the headers. Put MCU on and solder, clip headers
+- solder remaining switches
+  - triple-check with every row that your soldering the correct layout. put the required caps on the switches to see, which holes you need to solder to
+
 # Todos
 - [x] add PCB artwork
 - [x] order the thing
